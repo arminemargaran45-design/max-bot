@@ -1,6 +1,6 @@
-require('dotenv').config();
-
 const express = require('express');
+const axios = require('axios');
+require('dotenv').config();
 
 const app = express();
 
@@ -10,14 +10,12 @@ app.get('/', (req, res) => {
     res.send('MAX BOT WORKING');
 });
 
-app.post('/webhook', (req, res) => {
+app.post('/webhook', async (req, res) => {
 
-    console.log('Пришел webhook');
-
-    console.log(req.body);
+    console.log('Webhook от amoCRM:');
+    console.log(JSON.stringify(req.body, null, 2));
 
     res.sendStatus(200);
-
 });
 
 const PORT = process.env.PORT || 3000;
